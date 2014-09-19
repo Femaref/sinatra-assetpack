@@ -1,5 +1,5 @@
 require 'rack/test'
-require 'sinatra'
+require 'sinatra/base'
 
 module Sinatra
   module AssetPack
@@ -10,7 +10,7 @@ module Sinatra
     # Returns a list of formats that can be served.
     # Anything not in this list will be rejected.
     def self.supported_formats
-      @supported_formats ||= %w(css js png jpg gif svg otf eot ttf woff htc ico)
+      @supported_formats ||= %w(css js png jpg gif svg otf eot ttf woff htc ico html)
     end
 
     # Returns a map of what MIME format each Tilt type returns.

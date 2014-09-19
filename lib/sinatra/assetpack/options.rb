@@ -141,6 +141,10 @@ module Sinatra
       def css(name, *args) #path, files=[])
         js_or_css :css, name, *args
       end
+      
+      def html(name, *args) 
+        js_or_css :html, name, *args
+      end
 
       def js_or_css(type, name, *args)
         # Account for "css :name, '/path/to/css', [ files ]"
