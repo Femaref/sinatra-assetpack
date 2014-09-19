@@ -4,7 +4,13 @@ module Sinatra
     module ClassMethods
       # Sets asset options, or gets them
       def assets(&blk)
-        @options ||= Options.new(self, &blk)
+        if !self.superclass.name.include?("Sinatra::Base")
+          super_options = superclass.assets.dup
+          super_options.instance_variable_set(:@app, self)
+          @options ||= super_options
+        end
+        
+        @options ||= Options.new(self, &blk) 
         self.assets_initialize!  if block_given?
 
         @options
